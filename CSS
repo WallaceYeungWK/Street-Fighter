@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.game-container {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    margin: 50px auto;
+    background-color: #e0e0e0;
+    border: 2px solid #000;
+}
+
+.player {
+    position: absolute;
+    width: 50px;
+    height: 100px;
+    background-color: blue;
+    bottom: 0;
+}
+
+#player1 {
+    left: 50px;
+}
+
+#player2 {
+    right: 50px;
+}
