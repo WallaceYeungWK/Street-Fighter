@@ -1,0 +1,67 @@
+const player1 = document.getElementById('player1');
+const player2 = document.getElementById('player2');
+let player1X = 50;
+let player2X = 700;
+let player1Health = 100;
+let player2Health = 100;
+
+const moveSpeed = 10; // Speed of movement for both players
+
+// Function to move player 1
+function movePlayer1(event) {
+    if (event.key === 'a') { // Move left
+        player1X -= moveSpeed;
+    } else if (event.key === 'd') { // Move right
+        player1X += moveSpeed;
+    }
+    player1.style.left = player1X + 'px';
+}
+
+// Function to move player 2
+function movePlayer2(event) {
+    if (event.key === 'ArrowLeft') { // Move left
+        player2X -= moveSpeed;
+    } else if (event.key === 'ArrowRight') { // Move right
+        player2X += moveSpeed;
+    }
+    player2.style.left = player2X + 'px';
+}
+
+// Function to kick
+function player1Kick() {
+    if (Math.abs(player1X - player2X) < 50) {
+        player2Health -= 10; // Decrease player 2's health by 10
+        alert("Player 1 Kicked!");
+    }
+}
+
+function player2Kick() {
+    if (Math.abs(player2X - player1X) < 50) {
+        player1Health -= 10; // Decrease player 1's health by 10
+        alert("Player 2 Kicked!");
+    }
+}
+
+// Listen for player movements and kicks
+window.addEventListener('keydown', (event) => {
+    if (event.key === 'a' || event.key === 'd') {
+        movePlayer1(event);
+    } else if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        movePlayer2(event);
+    } else if (event.key === ' ') { // Player 1 kick
+        player1Kick();
+    } else if (event.key === 'Enter') { // Player 2 kick
+        player2Kick();
+    }
+});
+
+// Update the health bar or alert the game over
+setInterval(() => {
+    if (player1Health <= 0) {
+        alert("Player 2 Wins!");
+        location.reload();
+    } else if (player2Health <= 0) {
+        alert("Player 1 Wins!");
+        location.reload();
+    }
+}, 100);
